@@ -1,4 +1,5 @@
 <!-- PASO 1: de momento agregamos title, style y canva -->
+
 <title>Arkanoid en Js</title>
 <style>
     body{
@@ -15,7 +16,50 @@
 </style>
 
 <canvas></canvas>
+
 <!-- PASO 2: recuperamos la etiqueta canva en js -->
 <script>
     const canvas = document.querySelector("canvas")
+
+    //paso 3 agregamos el contexto en 2d, aunque hay varios
+    const ctx = canvas.getContext('2d')
+
+    //paso 4 agregamos tamaño de resolucion
+    canvas.width = 448
+    canvas.height = 400
+    //paso 6.1 agregamos las funciones a utilizar y las variables de cada objeto
+    //variables de la pelota
+    const ballRadius = 4; //tamaño de la pelota
+
+    //localizacion de la pelota, x va a cambiar constantemente
+    let x = canvas.width/2
+    
+    function drawBall(){}
+    function drawPaddle(){}
+    function drawBricks(){}
+
+    function collisionDetection(){}
+    function ballMovement(){}
+    function paddleMovement(){}
+
+    //paso 5 agregaremos recursividad
+    //esta es la base de cualquier juego requestAnimationFrame
+    //estamos en un "loop infinito" ya que se carga la pantalla 60 frames x minuto
+    function draw(){
+        //aqui haras tus dibujos y checks de colisiones
+        //paso 6 dibujamos los elementos con funciones
+        drawBall()
+        drawPaddle()
+        drawBricks()
+
+        //colisiones y moviemientos
+        collisionDetection()
+        ballMovement()
+        paddleMovement()
+
+
+        window.requestAnimationFrame(draw)
+    }
+
+    draw()
 </script>
