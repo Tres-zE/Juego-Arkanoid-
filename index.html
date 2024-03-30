@@ -42,6 +42,8 @@
     //paso 13: variables de la paleta
     const paddleHeight = 10
     const paddleWidth = 50
+    //paso 16.1: sensibilidad de movimiento por default
+    const PADDLE_SENSIBILITY = 8// el valor de la velocidad de movimiento
 
     let paddleX = (canvas.width - paddleWidth)/2
     let paddleY = canvas.height - paddleHeight - 10
@@ -99,9 +101,9 @@
     //paso 16: dar moviento a la paleta
     function paddleMovement(){
         if (rightPressed) {
-            paddleX += 7
+            paddleX += PADDLE_SENSIBILITY
         } else if(leftPressed){
-            paddleX -= 7
+            paddleX -= PADDLE_SENSIBILITY
         }
     }
 
