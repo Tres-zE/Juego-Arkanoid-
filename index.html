@@ -46,6 +46,10 @@
     let paddleX = (canvas.width - paddleWidth)/2
     let paddleY = canvas.height - paddleHeight - 10
 
+    //paso 15.1 para saber si la tecla esta pulsada o no
+    let rightPressed = false
+    let leftPressed = false
+
     //paso 7 empezaremos a dibujar, manera clasica
     function drawBall(){
         ctx.beginPath()/*iniciar el trazado*/
@@ -59,12 +63,13 @@
     function drawPaddle(){
         ctx.fillStyle = '#09f'
         ctx.fillRect(
-            paddleX,
-            paddleY,
-            paddleWidth,
-            paddleHeight
+            paddleX,// coordenada x
+            paddleY,// coordenada y
+            paddleWidth,// ancho del dibujo
+            paddleHeight// altura del dibujo
         )
     }   
+    
     function drawBricks(){}
 
     function collisionDetection(){}
@@ -90,11 +95,46 @@
         x += dx
         y += dy
     }
-    function paddleMovement(){}
+    
+    //paso 16: dar moviento a la paleta
+    function paddleMovement(){
+        if (rightPressed) {
+            paddleX += 7
+        } else if(leftPressed){
+            paddleX -= 7
+        }
+    }
 
     //paso 9: para limpiar la pantalla por asi decirlo y la llamamos en la funcion draw
     function cleanCanvas(){
         ctx.clearRect(0, 0, canvas.width, canvas.height)
+    }
+
+    //paso 15: iniciamos lo eventos del teclado
+    function initEvents(){
+        document.addEventListener('keydown', keyDownHandler),
+        document.addEventListener('keyup', keyUpHandler)
+
+        //paso 15.2 agregamos las funciones
+        //funcion para presionar tecla
+        function keyDownHandler(event) {
+            const { key } = event
+            if (key === 'Right' || key === 'ArrowRight') {
+                rightPressed = true
+            } else if(key === 'Left' || key === 'ArrowLeft'){
+                leftPressed = true
+            }
+        }
+
+        //funcion para soltar tecla
+        function keyUpHandler(event) {
+            const { key } = event
+            if (key === 'Right' || key === 'ArrowRight') {
+                rightPressed = false
+            } else if(key === 'Left' || key === 'ArrowLeft'){
+                leftPressed = false
+            }
+        }
     }
 
     //paso 5 agregaremos recursividad
@@ -118,5 +158,6 @@
         window.requestAnimationFrame(draw)
     }
 
-    draw()
+    draw()//inicializar pintado
+    initEvents()//paso 15.3: inicializamos los eventos
 </script>
