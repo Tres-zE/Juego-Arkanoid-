@@ -9,20 +9,29 @@
     canvas{
         border: 4px solid #fff;
         border-bottom: transparent;
-        background: #000;
+        /* paso 18: cambiamos el bg */
+        background: url('./bkg.png') repeat;
         margin: 0 auto;
         display: block;
     }
 </style>
 
 <canvas></canvas>
+<!-- paso 19: agregamos unos sprites, hidden para que los oculte -->
+<img hidden id="sprite" src="./sprite.png" alt="Sprite Arkanoid"> 
+<img hidden id="bricks" src="./bricks.png" alt="Sprite Bricks Arkanoid">
 
-<!-- PASO 2: recuperamos la etiqueta canva en js -->
+
 <script>
+    // PASO 2: recuperamos la etiqueta canva en js
     const canvas = document.querySelector("canvas")
 
     //paso 3 agregamos el contexto en 2d, aunque hay varios
     const ctx = canvas.getContext('2d')
+
+    //paso 20: llamamos a los sprites por medio del id
+    const $sprite = document.querySelector('#sprite')
+    const $bricks = document.querySelector('#bricks')
 
     //paso 4 agregamos tamaño de resolucion
     canvas.width = 448
@@ -63,7 +72,7 @@
     //paso 14: dibujamos la paleta de forma mas rapida o con menos codigo
     //para dibujar la pelota utilizamos beginPath, ahora utlizaremos fillStyle y fillRect
     function drawPaddle(){
-        ctx.fillStyle = '#09f'
+        ctx.fillStyle = 'white'
         ctx.fillRect(
             paddleX,// coordenada x
             paddleY,// coordenada y
