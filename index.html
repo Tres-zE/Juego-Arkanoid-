@@ -88,8 +88,20 @@
             dy = -dy
         }
 
-        //paso 12: una especie de game over cuando la pelota toca el suelo
-        if (y + dy > canvas.height - ballRadius) {
+        //paso 17: modificamos y agregamos tocar pelota con barra
+        //la pelota toca la barra
+        const isBallSameXAsPaddle = 
+        x > paddleX && x < paddleX + paddleWidth
+
+        const isBallTouchingPaddle =
+        y + dy > paddleY
+
+        if(isBallSameXAsPaddle && isBallTouchingPaddle){
+            dy = -dy //cambiamos la direccion de la pelota
+        }
+        else if (//paso 12: una especie de game over cuando la pelota toca el suelo
+            y + dy > canvas.height - ballRadius
+            ) {
             console.log('Game Over')
             document.location.reload()/*para que recargue una vez hayas perdido*/
         }
@@ -100,9 +112,10 @@
     
     //paso 16: dar moviento a la paleta
     function paddleMovement(){
-        if (rightPressed) {
+        //le damos limite a la barra para que no pase los bordes 
+        if (rightPressed && paddleX < canvas.width - paddleWidth) {
             paddleX += PADDLE_SENSIBILITY
-        } else if(leftPressed){
+        } else if(leftPressed && paddleX > 0){
             paddleX -= PADDLE_SENSIBILITY
         }
     }
