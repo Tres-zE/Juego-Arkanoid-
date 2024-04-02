@@ -72,12 +72,27 @@
     //paso 14: dibujamos la paleta de forma mas rapida o con menos codigo
     //para dibujar la pelota utilizamos beginPath, ahora utlizaremos fillStyle y fillRect
     function drawPaddle(){
-        ctx.fillStyle = 'white'
-        ctx.fillRect(
-            paddleX,// coordenada x
-            paddleY,// coordenada y
-            paddleWidth,// ancho del dibujo
-            paddleHeight// altura del dibujo
+        // ctx.fillStyle = 'white'
+        // ctx.fillRect(
+        //     paddleX,// coordenada x
+        //     paddleY,// coordenada y
+        //     paddleWidth,// ancho del dibujo
+        //     paddleHeight// altura del dibujo
+        //)
+
+        //paso 21:  ctx.fillStyle = 'white' nos sirvio para referencias, lo que haremos es colocar la imagen real de la barra
+        ctx.drawImage(
+            //colocaremos la imagen
+            $sprite, //imagen
+            29, //clipX: coordenada del recorte
+            174, //clipY: coordenada del recorte
+            paddleWidth, //el tamaño del recorte
+            paddleHeight, //el tamaño del recorte
+            paddleX, //posicion X del dibujo
+            paddleY, //posicion Y del dibujo
+            100, //ancho del dibujo
+            50 //alto del dibujo
+            //lo que haremos es quitar el  ctx.fillStyle = 'white'
         )
     }   
     
