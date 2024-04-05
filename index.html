@@ -64,9 +64,9 @@
     //paso 22: variables de los ladrillos
     const brickRowCount = 6;
     const brickColumnCount = 13;
-    const brickWidth = 30;
-    const brickHeight = 14;
-    const brickPadding = 2;
+    const brickWidth = 32;
+    const brickHeight = 16;
+    const brickPadding = 0;
     const brickOffsetTop = 80;
     const brickOffsetLeft = 16;
     const bricks = [];
@@ -138,16 +138,32 @@
                 const currentBrick = bricks[c][r]
                 if(currentBrick.status === BRICK_STATUS.DESTROYED) continue;
                 
-                ctx.fillStyle = 'yellow'
-                ctx.rect(
+                // ctx.fillStyle = 'yellow'
+                // ctx.rect(
+                //     currentBrick.x,
+                //     currentBrick.y,
+                //     brickWidth,
+                //     brickHeight
+                // )
+                // ctx.strokeStyle = '#000'
+                // ctx.stroke()
+                // ctx.fill()
+
+                //paso 25: damos imagen a los ladrillos
+                //el 32 es por la coordenada en la que se encuentra en el sprite: 0,0, 32,0 ....
+                const clipX = currentBrick.color * 32
+                //dibujamos el sprite, ahora para que se vean los colores dedemos borrar lo de  ctx.fillStyle = 'yellow' que esta arriba
+                ctx.drawImage(
+                    $bricks,
+                    clipX,
+                    0,
+                    brickWidth,//32,para darle el tono del sprite, se puede aumentar
+                    brickHeight,//16,para darle el tono del sprite, se puede aumentar
                     currentBrick.x,
                     currentBrick.y,
                     brickWidth,
                     brickHeight
                 )
-                ctx.strokeStyle = '#000'
-                ctx.stroke()
-                ctx.fill()
             } 
         }
     }
